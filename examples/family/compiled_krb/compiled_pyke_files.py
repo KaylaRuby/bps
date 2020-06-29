@@ -14,9 +14,9 @@ except NameError:
 def get_target_pkg():
     return target_pkg.target_pkg(__name__, __file__, pyke_version, loader, {
          ('', '', 'example.krb'):
-           [1593465262.293472, 'example_plans.py', 'example_bc.py'],
+           [1593470678.602714, 'example_bc.py'],
          ('', '', 'family.kfb'):
-           [1593452226.177996, 'family.fbc'],
+           [1593469475.1843824, 'family.fbc'],
         },
         compiler_version)
 

@@ -31,8 +31,17 @@ def at_station(rule, arg_patterns, arg_context):
               for x_2 in gen_2:
                 assert x_2 is None, \
                   "subway_rules.at_station: got unexpected plan from when clause 2"
-                rule.rule_base.num_bc_rule_successes += 1
-                yield
+                with engine.prove('subway', 'station', context,
+                                  (rule.pattern(0),
+                                   rule.pattern(3),
+                                   rule.pattern(4),
+                                   rule.pattern(4),)) \
+                  as gen_3:
+                  for x_3 in gen_3:
+                    assert x_3 is None, \
+                      "subway_rules.at_station: got unexpected plan from when clause 3"
+                    rule.rule_base.num_bc_rule_successes += 1
+                    yield
         rule.rule_base.num_bc_rule_failures += 1
     finally:
       context.done()
@@ -119,8 +128,10 @@ def populate(engine):
                   (contexts.variable('station'),),
                   (),
                   (contexts.variable('from'),
-                   contexts.anonymous('_line'),
-                   contexts.variable('station'),))
+                   contexts.variable('line'),
+                   contexts.variable('station'),
+                   pattern.pattern_tuple((contexts.variable('line'),), None),
+                   contexts.anonymous('_'),))
   
   bc_rule.bc_rule('travel_on_same_line', This_rule_base, 'take_line',
                   travel_on_same_line, None,
@@ -149,12 +160,13 @@ Krb_lineno_map = (
     ((14, 18), (7, 7)),
     ((20, 27), (9, 9)),
     ((28, 33), (10, 10)),
-    ((46, 50), (13, 13)),
-    ((52, 60), (15, 15)),
+    ((34, 42), (11, 11)),
+    ((55, 59), (14, 14)),
     ((61, 69), (16, 16)),
-    ((70, 70), (17, 17)),
-    ((83, 87), (20, 20)),
-    ((89, 97), (22, 22)),
+    ((70, 78), (17, 17)),
+    ((79, 79), (18, 18)),
+    ((92, 96), (21, 21)),
     ((98, 106), (23, 23)),
-    ((107, 107), (24, 24)),
+    ((107, 115), (24, 24)),
+    ((116, 116), (25, 25)),
 )

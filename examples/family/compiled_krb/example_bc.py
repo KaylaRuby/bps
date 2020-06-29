@@ -4,7 +4,6 @@ from pyke import contexts, pattern, bc_rule
 
 pyke_version = '1.1.1'
 compiler_version = 1
-from compiled_krb import example_plans
 
 def half_siblings_same_father(rule, arg_patterns, arg_context):
   engine = rule.rule_base.engine
@@ -41,24 +40,6 @@ def half_siblings_same_father(rule, arg_patterns, arg_context):
     finally:
       context.done()
 
-def withdraw(rule, arg_patterns, arg_context):
-  engine = rule.rule_base.engine
-  patterns = rule.goal_arg_patterns()
-  if len(arg_patterns) == len(patterns):
-    context = contexts.bc_context(rule)
-    try:
-      if all(map(lambda pat, arg:
-                   pat.match_pattern(context, context,
-                                     arg, arg_context),
-                 patterns,
-                 arg_patterns)):
-        rule.rule_base.num_bc_rules_matched += 1
-        rule.rule_base.num_bc_rule_successes += 1
-        yield context
-        rule.rule_base.num_bc_rule_failures += 1
-    finally:
-      context.done()
-
 def populate(engine):
   This_rule_base = engine.get_create('example')
   
@@ -72,20 +53,12 @@ def populate(engine):
                    contexts.variable('mother1'),
                    contexts.variable('bf'),
                    contexts.variable('mother2'),))
-  
-  bc_rule.bc_rule('withdraw', This_rule_base, 'son_of',
-                  withdraw, example_plans.withdraw,
-                  (contexts.variable('as'),
-                   contexts.variable('bs'),),
-                  (),
-                  ())
 
 
 Krb_filename = '../example.krb'
 Krb_lineno_map = (
-    ((15, 19), (29, 29)),
-    ((21, 28), (31, 31)),
-    ((29, 36), (32, 32)),
-    ((37, 37), (33, 33)),
-    ((50, 54), (37, 37)),
+    ((14, 18), (29, 29)),
+    ((20, 27), (31, 31)),
+    ((28, 35), (32, 32)),
+    ((36, 36), (33, 33)),
 )
