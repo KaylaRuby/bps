@@ -1,0 +1,12 @@
+# family.son_of(son, father, mother)
+
+# son_of(arthur2, arthur1, bertha_o)
+
+son_of(X, A, B)
+son_of(Y, A, B)
+
+son_of(Z, A, C)
+
+# father_son(K, L, ())
+
+# son_of_by_another_name(W, X, Y)

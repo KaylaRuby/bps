@@ -1,0 +1,31 @@
+
+# subway rules
+
+# (TAKE-LINE ,state ,line ,station)
+
+at_station
+    use at_station($station)
+    when
+	subway_rules.take_line($from, $_line, $station)
+	subway.at_station($from)
+
+travel_on_same_line
+    use take_line($from, $line, $to)
+    when
+	subway.station($from, ($line), $_, $_)
+	subway.station($to,($line), $_, $_)
+	check $from != $to
+
+connected_stations
+    use connected($from, $to)
+    when
+	subway.station($from, $line, $_, $_)
+	subway.station($to, $line, $_, $_)
+	check $from != $to
+
+# half_siblings_same_father
+#     use half_sibling($af, $bf)
+#     when
+# 	subway.son_of($af, $father, $mother1)
+# 	subway.son_of($bf, $father, $mother2)
+# 	check $mother1 != $mother2

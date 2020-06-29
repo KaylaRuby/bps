@@ -1,0 +1,39 @@
+
+# Establish child_parent relationships:
+# son_of
+#     foreach
+# 	family.son_of($child, $father, $mother)
+#     assert
+# 	family.child_parent($child, $father, father, son)
+# 	family.child_parent($child, $mother, mother, son)
+
+# # Establish sibling relationships:
+# brothers
+#     foreach
+# 	family.son_of($brother1, $father, $mother)
+# 	family.son_of($brother2, $father, $mother)
+# 	check $brother1 != $brother2
+#     assert
+# 	family.siblings($brother1, $brother2, brother, brother)
+
+# # Establish sibling relationships:
+# brothers_bc
+#     use real_siblings($brother1, $brother2)
+#     when
+# 	family.son_of($brother1, $father, $mother)
+# 	family.son_of($brother2, $father, $mother)
+# 	check $brother1 != $brother2
+
+
+half_siblings_same_father
+    use half_sibling($af, $bf)
+    when
+	family.son_of($af, $father, $mother1)
+	family.son_of($bf, $father, $mother2)
+	check $mother1 != $mother2
+
+
+withdraw
+	use son_of($as, $bs) taking (amount)
+	with
+		print("son_of called ----> ", amount)

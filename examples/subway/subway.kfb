@@ -1,0 +1,31 @@
+# Boston subway line
+
+line(RedLine)
+line(GreenLine)
+line(OrangeLine)
+line(BlueLine)
+
+at_station(Airport)
+
+station(Airport, (BlueLine), 4.0, 1.0)
+station(Aquarium, (BlueLine), 3.75, 0.1)
+station(WoodIsland, (BlueLine), 5.0, 2.0)
+station(State, (BlueLine, OrangeLine), 3.1, -0.75)
+
+station(ParkStreet, (GreenLine, RedLine), 2.5, -0.5)
+station(GovernmentCenter, (GreenLine, BlueLine), 2.9, -0.25)
+station(CopleySquare, (GreenLine), 1.0, -1.0)
+station(BostonU, (GreenLine), -1.0, -1.0)
+station(NorthStation, (GreenLine, OrangeLine), 2.5, 0.75)
+station(Haymarket, (OrangeLine, GreenLine), 2.75, 0.5)
+
+station(SouthStation, (RedLine), 3.0, -1.0)
+station(Washington, (RedLine, OrangeLine), 2.75, -0.75)
+station(KendallSquare, (RedLine), 1.0, 0.0)
+station(CentralSquare, (RedLine), -1.0, 0.0)
+station(HarvardSquare, (RedLine), -2.0, 1.0)
+
+# son_of(X, A, B)
+# son_of(Y, A, B)
+
+# son_of(Z, A, C)
